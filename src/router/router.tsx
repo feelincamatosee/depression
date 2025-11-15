@@ -1,5 +1,5 @@
 import {lazy} from "react";
-import {createBrowserRouter} from "react-router-dom";
+import {createBrowserRouter, Navigate} from "react-router-dom";
 
 import {Layout} from "layout";
 
@@ -27,6 +27,7 @@ export const router = createBrowserRouter([
             {path: '/instructions', element: <Introduction/>},
             {path: '/exam', element: <Exam/>},
             {path: '/result', element: <Result/>},
+            {path: '*', element: <Navigate to="/" replace />},
         ],
     },
 ], {basename: "/depression"});

@@ -36,15 +36,13 @@ export class ExamService {
 
     public static async getSeriouslyQuestions(): Promise<AIQuestion[]> {
         const payload = {
+            modelName: this.AI_MODEL_PRO,
             contents: [{ parts: [{ text: SERIOUSLY_PROMPT }] }],
             generationConfig: this.GENERATION_CONFIG,
         };
 
         try {
-            const response = await api.post<ApiResponse>(
-                `models/${this.AI_MODEL_PRO}:generateContent`,
-                payload
-            );
+            const response = await api.post<ApiResponse>('generate', payload);
 
             const jsonText = response.data.candidates[0].content.parts[0].text;
             const parsedJson = JSON.parse(jsonText) as RawAIQuestion[];
@@ -64,17 +62,14 @@ export class ExamService {
     }
 
     public static async getSatiricalQuestions(): Promise<AIQuestion[]> {
-
         const payload = {
+            modelName: this.AI_MODEL_FLASH,
             contents: [{ parts: [{ text: SATIRICAL_PROMPT }] }],
             generationConfig: this.GENERATION_CONFIG,
         };
 
         try {
-            const response = await api.post<ApiResponse>(
-                `models/${this.AI_MODEL_FLASH}:generateContent`,
-                payload
-            );
+            const response = await api.post<ApiResponse>('generate', payload);
 
             const jsonText = response.data.candidates[0].content.parts[0].text;
             const parsedJson = JSON.parse(jsonText) as RawAIQuestion[];

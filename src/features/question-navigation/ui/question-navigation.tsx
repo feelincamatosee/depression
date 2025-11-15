@@ -1,8 +1,6 @@
-import { useNavigate } from 'react-router-dom';
-
-import {useExamStore} from "store/exam.store.ts";
-
-import styles from './question-navigation.module.css';
+import { useNavigate } from "react-router-dom";
+import { useExamStore } from "store";
+import { StrokeButton } from "shared/ui";
 
 export const QuestionNavigation = () => {
     const navigate = useNavigate();
@@ -12,11 +10,10 @@ export const QuestionNavigation = () => {
         currentQuestion,
         answers,
         nextQuestion,
-        calculateResult
+        calculateResult,
     } = useExamStore();
 
     const isLastQuestion = currentQuestion === questions.length - 1;
-
     const isAnswerSelected = answers[currentQuestion] !== undefined;
 
     const handleClick = () => {
@@ -24,19 +21,15 @@ export const QuestionNavigation = () => {
 
         if (isLastQuestion) {
             calculateResult();
-            navigate('/result');
+            navigate("/result");
         } else {
             nextQuestion();
         }
     };
 
     return (
-        <button
-            disabled={!isAnswerSelected}
-            onClick={handleClick}
-            className={styles['button']}
-        >
-            {isLastQuestion ? 'Завершить' : 'Далее'}
-        </button>
+        <StrokeButton disabled={!isAnswerSelected} onClick={handleClick}>
+            {isLastQuestion ? "Завершить" : "Далее"}
+        </StrokeButton>
     );
 };

@@ -41,3 +41,10 @@
     font-weight: 700;
     color: #cc0000;
 }
+
+.actions {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}

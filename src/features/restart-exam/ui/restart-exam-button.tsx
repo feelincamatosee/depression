@@ -1,8 +1,7 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { useExamStore } from "store";
 
-import {useExamStore} from "store";
-
-import styles from './restart-exam.module.css';
+import { StrokeButton } from "shared/ui";
 
 export const RestartExamButton = () => {
     const navigate = useNavigate();
@@ -10,12 +9,8 @@ export const RestartExamButton = () => {
 
     const handleClick = () => {
         restart();
-        navigate('/');
+        navigate("/");
     };
 
-    return (
-        <button onClick={handleClick} className={styles.button}>
-            На главный экран
-        </button>
-    );
-}
+    return <StrokeButton onClick={handleClick}>На главный экран</StrokeButton>;
+};

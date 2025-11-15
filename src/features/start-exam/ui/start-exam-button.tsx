@@ -1,32 +1,38 @@
-import {Loader2} from 'lucide-react';
+import { Loader2 } from "lucide-react";
+import { useExamStore } from "store";
+import { useNavigate } from "react-router-dom";
 
-import {useExamStore} from 'store';
-import {useNavigate} from "react-router-dom";
+import { StrokeButton } from "shared/ui";
 
-import styles from './start-exam-button.module.css';
+import styles from "./start-exam-button.module.css";
 
 export const StartExamButton = () => {
-    const {isLoading} = useExamStore();
-    const navigate = useNavigate()
-
-    const { startExam } = useExamStore();
+    const { isLoading, startExam } = useExamStore();
+    const navigate = useNavigate();
 
     const handleStartExam = async () => {
         try {
             await startExam();
-            navigate('/exam');
+            navigate("/exam");
         } catch (error) {
             console.error("Failed to start exam:", error);
         }
     };
 
     return (
-        <button
+        <StrokeButton
             onClick={handleStartExam}
             disabled={isLoading}
-            className={styles['button']}
+            className={styles['start-exam-button']}
         >
-            {isLoading ? <>Подготовка к тестированию <Loader2 className={styles['loader']}/></> : 'Начать'}
-        </button>
+            {isLoading ? (
+                <>
+                    Подготовка к тестированию
+                    <Loader2 className={styles.loader} />
+                </>
+            ) : (
+                "Начать"
+            )}
+        </StrokeButton>
     );
 };

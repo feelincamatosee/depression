@@ -1,10 +1,14 @@
 import {useExamStore} from "store";
+import {useNavigate} from "react-router-dom";
+
 import {StartExamButton} from "features/start-exam";
+import {StrokeButton} from "shared/ui";
 
 import styles from './instructions.module.css';
 
 export const Instructions = () => {
     const { mode, error } = useExamStore();
+    const navigate = useNavigate()
 
     const instructions = {
         satirical: {
@@ -67,7 +71,13 @@ export const Instructions = () => {
                 </div>
             )}
 
-            <StartExamButton />
+            <div className={styles['actions']}>
+                <StrokeButton onClick={() => navigate("/")}>
+                    Назад
+                </StrokeButton>
+
+                <StartExamButton />
+            </div>
         </div>
     );
 };

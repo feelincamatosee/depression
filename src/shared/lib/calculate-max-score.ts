@@ -1,4 +1,4 @@
-import type {AIQuestion} from "../../entities/question/types";
+import type {AIQuestion} from "entities/question";
 
 export const calculateMaxScore = (questions: AIQuestion[]): number => {
     if (!questions || questions.length === 0) {

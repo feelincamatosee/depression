@@ -7,12 +7,15 @@
     "types": ["node"],
     "skipLibCheck": true,
 
+    /* ВАЖНО: для project references */
+    "composite": true,
+    "noEmit": true,
+
     /* Bundler modes */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
-    "noEmit": true,
 
     /* Linting */
     "strict": true,

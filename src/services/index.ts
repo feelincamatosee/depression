@@ -1,0 +1,1 @@
+export * from "./exam-service/exam-service"

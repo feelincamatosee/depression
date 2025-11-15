@@ -7,7 +7,7 @@ import {StrokeButton} from "shared/ui";
 import styles from './instructions.module.css';
 
 export const Instructions = () => {
-    const { mode, error } = useExamStore();
+    const { mode, error, isLoading  } = useExamStore();
     const navigate = useNavigate()
 
     const instructions = {
@@ -72,7 +72,10 @@ export const Instructions = () => {
             )}
 
             <div className={styles['actions']}>
-                <StrokeButton onClick={() => navigate("/")}>
+                <StrokeButton
+                    onClick={() => navigate("/")}
+                    disabled={isLoading}
+                >
                     Назад
                 </StrokeButton>
 
